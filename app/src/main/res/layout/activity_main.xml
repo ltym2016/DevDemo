@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="启动"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_destory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.samluys.devdemo.chapter4.MyDemoView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"/>
+
+    <EditText
+        android:id="@+id/et_start"
+        android:layout_width="80dp"
+        android:layout_height="26dp"
+        android:background="@drawable/bg_classify_range"
+        android:gravity="center"
+        android:hint="请输入薪酬范围"
+        android:inputType="number"
+        android:lines="1"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:singleLine="true"
+        android:textSize="14sp" />
+
+    <!--<com.classichu.lineseditview.LinesEditView-->
+        <!--android:id="@+id/et_input"-->
+        <!--android:layout_width="280dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:background="@drawable/bg_classify_range"-->
+        <!--android:gravity="left"-->
+        <!--app:classic_maxCount="9"-->
+        <!--android:hint="请输入薪酬范围"-->
+        <!--android:inputType="number"-->
+        <!--android:lines="1"-->
+        <!--android:maxLength="9"-->
+        <!--android:letterSpacing="0.5"-->
+        <!--android:paddingLeft="4dp"-->
+        <!--android:paddingRight="4dp"-->
+        <!--android:singleLine="true"-->
+        <!--android:textSize="14sp" />-->
+
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_animator"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@mipmap/ic_launcher_round"/>-->
+
+    <!--<com.samluys.tablib.QFBottomTabLayout-->
+        <!--android:id="@+id/tab"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:qf_textSelectColor="#2C97DE"-->
+        <!--app:qf_textUnselectColor="#66000000"/>-->
+
+    <!--<Button-->
+        <!--android:id="@+id/btn_mvvm"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="MVVM"/>-->
+
+    <Button
+    android:id="@+id/btn_rx"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="RX"/>
+
+</LinearLayout>
