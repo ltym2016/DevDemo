@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.Bundle;
 import android.view.View;
 
+import com.samluys.devdemo.ToastUtils;
 import com.samluys.devdemo.rx.SingleLiveEvent;
 
 import java.lang.ref.WeakReference;
@@ -15,6 +16,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -26,6 +28,9 @@ import io.reactivex.disposables.Disposable;
 public class BaseViewModel extends AndroidViewModel implements IBaseViewModel{
 
     private ViewLiveData mViewLiveData;
+
+    //管理RxJava，主要针对RxJava异步操作造成的内存泄漏
+    private CompositeDisposable mCompositeDisposable;
 
     public BaseViewModel(@NonNull Application application) {
         super(application);
@@ -47,6 +52,12 @@ public class BaseViewModel extends AndroidViewModel implements IBaseViewModel{
         mViewLiveData.startActivityEvent.postValue(params);
     }
 
+    protected void addSubscribe(Disposable disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);
+    }
 
     @Override
     public void onAny(LifecycleOwner owner, Lifecycle.Event event) {
@@ -145,5 +156,13 @@ public class BaseViewModel extends AndroidViewModel implements IBaseViewModel{
         public static String CLASS = "CLASS";
         public static String CANONICAL_NAME = "CANONICAL_NAME";
         public static String BUNDLE = "BUNDLE";
+    }
+
+    @Override
+    public void onCleared() {
+        //ViewModel销毁时会执行，同时取消所有异步任务
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();
+        }
     }
 }

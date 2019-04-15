@@ -16,6 +16,6 @@ import retrofit2.http.Path;
 public interface ApiService {
 
     @GET("getAnUser/{userId}")
-    Observable<ApiUser> getApiUser(@Path("userId") String id);
+    Observable<BaseResponse<ApiUser>> getApiUser(@Path("userId") String id);
 
 }

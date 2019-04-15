@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -18,10 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientManager {
 
     private static RetrofitClientManager instance;
-
-    private RetrofitClientManager() {
-
-    }
+    private static ApiService mApiService;
 
     public static RetrofitClientManager getInstance() {
         if (instance == null) {
@@ -34,26 +31,33 @@ public class RetrofitClientManager {
         return instance;
     }
 
-    public Retrofit getRetrofit(String baseUrl) {
+    private RetrofitClientManager() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .retryOnConnectionFailure(true)
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60, TimeUnit.SECONDS);
+                .connectTimeout(HttpConfig.HTTP_TIME, TimeUnit.SECONDS)
+                .writeTimeout(HttpConfig.HTTP_TIME, TimeUnit.SECONDS)
+                .readTimeout(HttpConfig.HTTP_TIME, TimeUnit.SECONDS)
+                .addInterceptor(InterceptorUtils.HeaderInterceptor());
 
         if (BuildConfig.DEBUG) {
-            builder.addInterceptor(new LogInterceptor());
+            builder.addInterceptor(InterceptorUtils.LogInterceptor());
         }
         OkHttpClient okHttpClient = builder.build();
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(HttpConfig.HTTP_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(okHttpClient)
                 .build();
 
-        return retrofit;
+        mApiService = retrofit.create(ApiService.class);
+    }
+
+
+
+    public ApiService getApiService() {
+        return mApiService;
     }
 }

@@ -1,10 +1,12 @@
 package com.samluys.devdemo.rx;
 
 import android.app.Application;
+import android.util.Log;
 import android.view.View;
 
 import com.samluys.devdemo.base.BaseViewModel;
-import com.samluys.devdemo.http.ApiService;
+import com.samluys.devdemo.http.BaseResponse;
+import com.samluys.devdemo.http.ExceptionHandle;
 import com.samluys.devdemo.http.RetrofitClientManager;
 import com.samluys.devdemo.http.RxUtils;
 
@@ -33,21 +35,13 @@ public class RxDemoViewModel extends BaseViewModel {
     }
 
     public void getApiUser () {
-        disposable = RetrofitClientManager.getInstance().getRetrofit("https://fierce-cove-29863.herokuapp.com/")
-                .create(ApiService.class).getApiUser("1")
-                .compose(RxUtils.<ApiUser>iOThreadScheduler())
-                .compose(RxUtils.exceptionTransformer())
-                .subscribe(new Consumer<ApiUser>() {
+        addSubscribe(RetrofitClientManager.getInstance().getApiService().getApiUser("1")
+                .compose(RxUtils.<BaseResponse<ApiUser>>iOThreadScheduler())
+                .subscribe(new Consumer<BaseResponse<ApiUser>>() {
                     @Override
-                    public void accept(ApiUser apiUser) throws Exception {
-                        String name = apiUser.firstname;
-                    }
-                });
-    }
+                    public void accept(BaseResponse<ApiUser> apiUserBaseResponse) throws Exception {
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        disposable.dispose();
+                    }
+                }, new ExceptionHandle()));
     }
 }

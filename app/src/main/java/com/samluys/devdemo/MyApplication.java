@@ -16,7 +16,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        //初始化工具类
+        Utils.init(this);
 
         int pid = android.os.Process.myPid();
         String processName = "";
