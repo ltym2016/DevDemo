@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".rx.RxDemoActivity"></activity>
+        <activity android:name=".rx.NetWorkActivity"></activity>
+        <activity android:name=".rx.RxDemoActivity" />
         <activity android:name=".mvvm.LoginActivity" />
         <activity android:name=".color.ColorDemoActivity" />
         <activity android:name=".capter3.ScrollActivity" />
