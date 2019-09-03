@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="@drawable/shape_white_corner_top"
+    >
+
+
+    <TextView
+        android:id="@+id/tv_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="21dp"
+        android:drawableTop="@drawable/ic_picture_video"
+        android:text="record"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_editer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="21dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_picture_video"
+        android:text="editer"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="30dp"
+        android:drawableTop="@drawable/ic_picture_video"
+        android:text="editer"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="25dp"
+        android:paddingRight="25dp"
+        android:paddingLeft="25dp"
+        android:src="@drawable/ic_close_record" />
+
+</RelativeLayout>

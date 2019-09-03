@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScrollPickerActivity">
+
+    <com.samluys.devdemo.widgt.BitmapScrollPicker
+        android:id="@+id/picker_02"
+        android:layout_width="wrap_content"
+        android:layout_height="220dp"
+        android:layout_weight="1"
+        android:background="#888888"
+        app:spv_disallow_intercept_touch="true"
+        app:spv_draw_bitmap_height="50dp"
+        app:spv_draw_bitmap_mode="center"
+        app:spv_draw_bitmap_width="50dp"
+        app:spv_is_circulation="true"
+        app:spv_max_scale="1.2"
+        app:spv_min_scale="1.0"
+        app:spv_orientation="horizontal"
+        app:spv_visible_item_count="5"
+        />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始"/>
+
+</LinearLayout>

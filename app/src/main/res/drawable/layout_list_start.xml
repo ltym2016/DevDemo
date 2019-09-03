@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+
+    <!-- 设置整个屏幕背景为白色 -->
+    <item >
+        <color android:color="@android:color/white"/>
+    </item>
+
+    <item >
+        <bitmap
+            android:src="@drawable/ic_splash_bottom"
+            android:gravity="bottom|fill_horizontal"
+            android:tileMode="disabled"
+            android:scaleType="fitXY"
+            android:filter="true"
+            />
+    </item>
+
+    <item android:top="-300dp"
+        >
+        <bitmap android:src="@drawable/ic_splash_logo"
+            android:gravity="center"
+            />
+    </item>
+
+</layer-list>

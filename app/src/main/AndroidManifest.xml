@@ -11,19 +11,16 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".MyApplication"
+        android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".rx.NetWorkActivity"></activity>
+        android:theme="@style/startAppTheme">
+        <activity android:name=".ScrollPickerActivity"></activity>
+        <activity android:name=".rx.NetWorkActivity" />
         <activity android:name=".rx.RxDemoActivity" />
-        <activity android:name=".mvvm.LoginActivity" />
-        <activity android:name=".color.ColorDemoActivity" />
-        <activity android:name=".capter3.ScrollActivity" />
-        <activity android:name=".day0108.TestIntDefActivity" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask">
@@ -33,37 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".day1030.LaunchModeActivity" />
-        <activity android:name=".day1106.LifecyclesActivity" />
-        <activity android:name=".day1111.DemoViewModelActivity" />
-        <activity
-            android:name=".day1112.ThirdActivity"
-            android:launchMode="singleTask"
-            android:process=":remote" />
-        <activity
-            android:name=".day1112.SecondActivity"
-            android:launchMode="singleTask"
-            android:process="com.samluys.devdemo.remote" />
-        <activity android:name=".day1113.NameActivity" />
-        <activity android:name=".day1119.DemoIntentFilterActivity">
-            <intent-filter>
-                <action android:name="com.samluys.testaction" />
-                <action android:name="com.samluys.testaction_1" />
-
-                <category android:name="com.samluys.testcategory" />
-                <category android:name="com.samluys.testcategory_1" />
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data
-                    android:host="www.zoe.com"
-                    android:mimeType="image/*"
-                    android:scheme="samluys" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".day1127.RecyclerViewMoveActivity" />
-        <activity android:name=".day1203.GestureDemoActivity" />
-
-        <service android:name=".ms.MyService" />
     </application>
 
 </manifest>

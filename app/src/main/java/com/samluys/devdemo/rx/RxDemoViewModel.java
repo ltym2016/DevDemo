@@ -1,7 +1,6 @@
 package com.samluys.devdemo.rx;
 
 import android.app.Application;
-import android.util.Log;
 import android.view.View;
 
 import com.samluys.devdemo.base.BaseViewModel;
@@ -17,8 +16,8 @@ import io.reactivex.functions.Consumer;
 /**
  * @author luys
  * @describe
- * @date 2019/4/12
- * @email samluys@foxmail.com
+ * @date 2019/4/17
+ * @email ltym_lys@126.com
  */
 public class RxDemoViewModel extends BaseViewModel {
 
