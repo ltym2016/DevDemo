@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.samluys.devdemo.base.BaseActivity;
+import com.samluys.devdemo.design.observer.TestCallbackActivity;
 import com.samluys.devdemo.rx.RxDemoActivity;
 import com.samluys.tablib.QFTabEntity;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
@@ -119,6 +120,13 @@ public class MainActivity extends AppCompatActivity {
             Log.e("CallInfoEntity", "异常");
         }
 
+
+        findViewById(R.id.btn_callback).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TestCallbackActivity.class));
+            }
+        });
 
     }
 
