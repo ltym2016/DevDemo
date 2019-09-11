@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.samluys.devdemo.base.BaseActivity;
+import com.samluys.devdemo.design.observer.EventBusActivity;
 import com.samluys.devdemo.design.observer.TestCallbackActivity;
 import com.samluys.devdemo.rx.RxDemoActivity;
 import com.samluys.tablib.QFTabEntity;
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_callback).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TestCallbackActivity.class));
+                startActivity(new Intent(MainActivity.this, EventBusActivity.class));
             }
         });
 

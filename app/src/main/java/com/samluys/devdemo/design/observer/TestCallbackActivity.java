@@ -16,18 +16,26 @@ public class TestCallbackActivity extends AppCompatActivity {
 //        MomCallbackImpl impl = new MomCallbackImpl();
 //        impl.say(new XiaoMing(), "喊爸爸吃饭");
 
-        IWxServerSubject iWxServerSubject = new TigerChainSubject() ;
+        // 观察者模式--公众号订阅的例子
+//        IWxServerSubject iWxServerSubject = new TigerChainSubject() ;
+//
+//        ReaderObserver zhangsai = new ReaderObserver("张三") ;
+//        ReaderObserver lisi = new ReaderObserver("李四") ;
+//        ReaderObserver wangwu = new ReaderObserver("王五") ;
+//        ReaderObserver zhaoLiu = new ReaderObserver("赵六") ;
+//
+//        iWxServerSubject.attachObserver(zhangsai);
+//        iWxServerSubject.attachObserver(lisi);
+//        iWxServerSubject.attachObserver(wangwu);
+//        iWxServerSubject.attachObserver(zhaoLiu);
 
-        ReaderObserver zhangsai = new ReaderObserver("张三") ;
-        ReaderObserver lisi = new ReaderObserver("李四") ;
-        ReaderObserver wangwu = new ReaderObserver("王五") ;
-        ReaderObserver zhaoLiu = new ReaderObserver("赵六") ;
+//        ((TigerChainSubject)iWxServerSubject).submitContent("一个好人");
 
-        iWxServerSubject.attachObserver(zhangsai);
-        iWxServerSubject.attachObserver(lisi);
-        iWxServerSubject.attachObserver(wangwu);
-        iWxServerSubject.attachObserver(zhaoLiu);
+        // 狼王下达命令例子
+        ZhenChaLang zhenChaLang = new ZhenChaLang(LangWang.getInstance());
+        LieShaLang lieShaLang = new LieShaLang(LangWang.getInstance());
 
-        ((TigerChainSubject)iWxServerSubject).submitContent("一个好人");
+        LangWang.getInstance().publishCommand("开始行动");
+
     }
 }
