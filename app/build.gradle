@@ -55,4 +55,5 @@ dependencies {
     annotationProcessor("com.tinkerpatch.tinker:tinker-android-anno:1.9.13") { changing = true }
     compileOnly("com.tinkerpatch.tinker:tinker-android-anno:1.9.13") { changing = true }
     implementation("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.13") { changing = true }
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha04'
 }

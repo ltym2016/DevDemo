@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.samluys.devdemo.base.BaseActivity;
 import com.samluys.devdemo.design.observer.EventBusActivity;
 import com.samluys.devdemo.design.observer.TestCallbackActivity;
+import com.samluys.devdemo.jetpack.viewmodel.ViewModelActivity;
 import com.samluys.devdemo.rx.RxDemoActivity;
 import com.samluys.tablib.QFTabEntity;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
@@ -107,6 +108,13 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(MainActivity.this, ScrollPickerActivity.class));
                 mShortDialog = ShortVideoDialog.newInstance(1);
                 mShortDialog.showDialog(getSupportFragmentManager(), "ShortVideoDialog");
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ViewModelActivity.class));
             }
         });
 
