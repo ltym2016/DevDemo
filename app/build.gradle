@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply from: 'tinkerpatch.gradle'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.samluys.devdemo"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -16,13 +16,40 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug{
+        }
+
+        staging{
+            initWith release
+        }
     }
 
     dataBinding {
         enabled = true
     }
 
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '29.0.2'
+
+    flavorDimensions "luys","sam"
+    productFlavors {
+        dev{
+            dimension "luys"
+            manifestPlaceholders = [hostName:"www.baidu.com"]
+        }
+
+        prod{
+            dimension "luys"
+        }
+
+        demo{
+            dimension "sam"
+        }
+
+        full {
+            dimension "sam"
+        }
+    }
 }
 
 dependencies {
@@ -39,6 +66,7 @@ dependencies {
     // optional - ReactiveStreams support for LiveData
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
     annotationProcessor project(':intentapt')
+    api project(':zoomable')
     implementation 'com.github.ltym2016:QFBottomTabLayout:1.0.5'
     implementation 'com.github.louisgeek:ClassicLinesEditView:1.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
@@ -56,4 +84,7 @@ dependencies {
     compileOnly("com.tinkerpatch.tinker:tinker-android-anno:1.9.13") { changing = true }
     implementation("com.tinkerpatch.sdk:tinkerpatch-android-sdk:1.2.13") { changing = true }
     implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha04'
+
+    implementation 'com.github.ltym2016:UIButton:1.0.0'
+    implementation 'me.kareluo.intensify:image:1.1.0'
 }

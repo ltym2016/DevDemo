@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -32,10 +33,45 @@
         android:text="回调"
         android:visibility="visible"/>
 
+    <com.samluys.uibutton.UIButton
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:text="自定义button"
+        android:gravity="center"
+        app:ui_solidColor="@color/colorPrimary"
+        app:ui_cornerRadius="20dp"/>
+
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="viewModel" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Android Q" />
+
+    <me.kareluo.intensify.image.IntensifyImageView
+        android:id="@+id/intensify_image"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="200dp"
+        android:visibility="gone"/>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_inage"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:visibility="visible"
+        app:actualImageScaleType="centerCrop"/>
+
+    <com.facebook.samples.zoomable.ZoomableDraweeView
+        android:id="@+id/zdv_image"
+        android:layout_width="500dp"
+        android:layout_height="1000dp"
+        android:visibility="gone"/>
 
 </LinearLayout>
