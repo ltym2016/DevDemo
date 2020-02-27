@@ -14,11 +14,15 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -48,9 +52,11 @@ import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.samples.zoomable.ZoomableDraweeView;
 import com.samluys.devdemo.androidQ.AndroidQActivity;
 import com.samluys.devdemo.base.BaseActivity;
+import com.samluys.devdemo.databinding.ActivityMainBinding;
 import com.samluys.devdemo.design.observer.EventBusActivity;
 import com.samluys.devdemo.design.observer.TestCallbackActivity;
 import com.samluys.devdemo.jetpack.viewmodel.ViewModelActivity;
+import com.samluys.devdemo.lazy.LazyActivity;
 import com.samluys.devdemo.rx.RxDemoActivity;
 import com.samluys.devdemo.widgt.ReplyViewDialog;
 import com.samluys.tablib.QFTabEntity;
@@ -74,6 +80,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
@@ -96,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
     private int a;
     private ShortVideoDialog mShortDialog;
     private FragmentManager mManager;
+    private ActivityMainBinding activityMainBinding;
 
     private ArrayList<QFTabEntity> mTabEntities = new ArrayList<>();
     private String[] mTitles = {"首页", "社区", "本地圈", "消息", "发现"};
@@ -131,7 +139,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        activityMainBinding = ActivityMainBinding.inflate(LayoutInflater.from(this));
+        setContentView(activityMainBinding.getRoot());
+
+        addWhiteList();
+
 
         mManager = getSupportFragmentManager();
 
@@ -331,6 +344,70 @@ public class MainActivity extends AppCompatActivity {
                 .setUri(uri)
                 .build();
         zoomableDraweeView.setController(controller);//将下载配置导入
+
+        doLazy();
+
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("dd", null);
+        hashMap.put("cc", "ddsd");
+
+        for(Map.Entry<String, String> entry : hashMap.entrySet()){
+            String mapKey = entry.getKey();
+            String mapValue = entry.getValue();
+            Log.e("lust", mapKey+":"+mapValue);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void addWhiteList() {
+        activityMainBinding.btnAddWhiteList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isIgnoringBatteryOptimizations()) {
+                    requestIgnoreBatteryOptimizations();
+                }
+            }
+        });
+    }
+
+    /**
+     * 判断在不在白名单里面
+     * @return
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean isIgnoringBatteryOptimizations() {
+        boolean isIgnoring = false;
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        if (powerManager != null) {
+            isIgnoring = powerManager.isIgnoringBatteryOptimizations(getPackageName());
+        }
+        return isIgnoring;
+    }
+
+    /**
+     * 申请加入白名单
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public void requestIgnoreBatteryOptimizations() {
+        try {
+            Intent intent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 懒加载
+     */
+    private void doLazy() {
+        findViewById(R.id.btn_lazy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LazyActivity.class));
+            }
+        });
     }
 
     /**

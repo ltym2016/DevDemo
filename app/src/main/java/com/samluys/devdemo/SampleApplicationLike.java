@@ -68,22 +68,22 @@ public class SampleApplicationLike extends DefaultApplicationLike {
 
     }
 
-    private void initTinkerPatch() {
-        // 我们可以从这里获得Tinker加载过程的信息
-        if (BuildConfig.TINKER_ENABLE) {
-            tinkerApplicationLike = TinkerPatchApplicationLike.getTinkerPatchApplicationLike();
-            // 初始化TinkerPatch SDK
-            TinkerPatch.init(tinkerApplicationLike)
-                    .reflectPatchLibrary()
-                    .setPatchRollbackOnScreenOff(true)
-                    .setPatchRestartOnSrceenOff(true)
-                    .setFetchPatchIntervalByHours(3);
-            // 获取当前的补丁版本
-            Log.d("LUYS_TINKER", "Current patch version is " + TinkerPatch.with().getPatchVersion());
-
-            // fetchPatchUpdateAndPollWithInterval 与 fetchPatchUpdate(false)
-            // 不同的是，会通过handler的方式去轮询
-            TinkerPatch.with().fetchPatchUpdateAndPollWithInterval();
-        }
-    }
+//    private void initTinkerPatch() {
+//        // 我们可以从这里获得Tinker加载过程的信息
+//        if (BuildConfig.TINKER_ENABLE) {
+//            tinkerApplicationLike = TinkerPatchApplicationLike.getTinkerPatchApplicationLike();
+//            // 初始化TinkerPatch SDK
+//            TinkerPatch.init(tinkerApplicationLike)
+//                    .reflectPatchLibrary()
+//                    .setPatchRollbackOnScreenOff(true)
+//                    .setPatchRestartOnSrceenOff(true)
+//                    .setFetchPatchIntervalByHours(3);
+//            // 获取当前的补丁版本
+//            Log.d("LUYS_TINKER", "Current patch version is " + TinkerPatch.with().getPatchVersion());
+//
+//            // fetchPatchUpdateAndPollWithInterval 与 fetchPatchUpdate(false)
+//            // 不同的是，会通过handler的方式去轮询
+//            TinkerPatch.with().fetchPatchUpdateAndPollWithInterval();
+//        }
+//    }
 }

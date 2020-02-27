@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply from: 'tinkerpatch.gradle'
+//apply from: 'tinkerpatch.gradle'
 
 android {
     compileSdkVersion 29
@@ -17,10 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        debug{
+        debug {
         }
 
-        staging{
+        staging {
             initWith release
         }
     }
@@ -31,18 +31,18 @@ android {
 
     buildToolsVersion '29.0.2'
 
-    flavorDimensions "luys","sam"
+    flavorDimensions "luys", "sam"
     productFlavors {
-        dev{
+        dev {
             dimension "luys"
-            manifestPlaceholders = [hostName:"www.baidu.com"]
+            manifestPlaceholders = [hostName: "www.baidu.com"]
         }
 
-        prod{
+        prod {
             dimension "luys"
         }
 
-        demo{
+        demo {
             dimension "sam"
         }
 
@@ -50,12 +50,14 @@ android {
             dimension "sam"
         }
     }
+    viewBinding.enabled = true
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.google.android.material:material:1.1.0-alpha07'
     androidTestImplementation 'androidx.test:runner:1.1.1'
@@ -67,7 +69,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version"
     annotationProcessor project(':intentapt')
     api project(':zoomable')
-    implementation 'com.github.ltym2016:QFBottomTabLayout:1.0.5'
+    implementation 'com.github.ltym2016:QFBottomTabLayout:1.1.9'
     implementation 'com.github.louisgeek:ClassicLinesEditView:1.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
